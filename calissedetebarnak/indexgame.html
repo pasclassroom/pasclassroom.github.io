@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity Web Player | 911</title>
+    <style>
+      #fullscreen-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px 15px;
+        background-color: rgba(255, 255, 255, 0.575);
+        color: rgb(0, 0, 0);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 10;
+      }
+      #fullscreen-btn:hover {
+        background-color: #ffffff;
+      }
+    </style>
+  </head>
+  <body style="text-align: center; padding: 0; border: 0; margin: 0; background-color: black;">
+    <button id="fullscreen-btn">Go Fullscreen</button>
+    <canvas id="unity-canvas" width=960 height=600 tabindex="-1" style="width: 100%; background: #231F20"></canvas>
+
+    <script src="Build/calissedetebarnak.loader.js"></script>
+    <script>
+      document.getElementById("fullscreen-btn").addEventListener("click", function () {
+        var canvas = document.getElementById("unity-canvas");
+        if (canvas.requestFullscreen) {
+          canvas.requestFullscreen();
+        } else if (canvas.mozRequestFullScreen) { // Firefox
+          canvas.mozRequestFullScreen();
+        } else if (canvas.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+          canvas.webkitRequestFullscreen();
+        } else if (canvas.msRequestFullscreen) { // IE/Edge
+          canvas.msRequestFullscreen();
+        }
+      });
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+
+        var canvas = document.querySelector("#unity-canvas");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.position = "fixed";
+
+        document.body.style.textAlign = "left";
+      }
+
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        arguments: [],
+        dataUrl: "Build/calissedetebarnak.data",
+        frameworkUrl: "Build/calissedetebarnak.framework.js",
+        codeUrl: "Build/calissedetebarnak.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "911",
+        productVersion: "0.1",
+      });
+    </script>
+  </body>
+</html>

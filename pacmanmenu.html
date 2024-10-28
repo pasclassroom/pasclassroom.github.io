@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pacman</title>
+    <link rel="icon" type="image/x-icon" href="/images/Google_Classroom_Logo.png">
+
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        /* Header Styles */
+        header {
+            background-color: #ffffff;
+            color: rgba(0, 0, 0, 0.6);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            border-bottom: 1px solid #ccc;
+        }
+        header a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: "Roboto", sans-serif;
+            letter-spacing: -0.7px;
+            margin: 0;
+            font-weight: 400;
+            font-size: 22px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.65);
+        }
+        /* Iframe Sidebar Styles */
+        #sidebar-frame {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 220px;
+            height: calc(100vh - 80px);
+            border: none;
+            background-color: #ffffff;
+        }
+        /* Main Content Styles */
+        .content {
+            margin-left: 220px;
+            padding: 2rem 1rem;
+            margin-top: 64px;
+        }
+
+        iframe#contentFrame {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        /* Sidebar Navigation Styles (inside iframe) */
+        .sidebar {
+            background-color: #ffffff;
+            color: rgba(0, 0, 0, 0.493);
+            height: 100%;
+            padding: 1rem;
+            width: 200px;
+            border-right: 1px solid #ccc;
+        }
+        .sidebar a {
+            color: rgba(0, 0, 0, 0.726);
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: -0.3px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin: 0.2rem 0;
+            padding: 10px 15px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .sidebar a:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .sidebar a.active {
+            background-color: #4286f42d;
+        }
+        .sidebar img {
+            width: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html">
+            <img src="images/bars.png" width="30" alt="Menu Icon" style="margin-right: 10px;">
+            <img src="images/Google_Classroom_Logo.png" width="30" alt="Google Classroom Logo" style="margin-right: 10px;">
+            <h1>Classroom</h1>
+        </a>
+    </header>
+
+    <!-- Sidebar Iframe -->
+    <iframe id="sidebar-frame" src="sidebar.html"></iframe>
+
+    <!-- Main Content -->
+    <main class="content">
+        <iframe id="contentFrame" src="games-gh-pages/games-gh-pages/pacman/index.html"></iframe>
+    </main>
+</body>
+</html>

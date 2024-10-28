@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snake Game</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      user-select: none; /* Prevent text selection */
+    }
+
+    body {
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    canvas {
+      border: 1px solid white;
+    }
+    #score {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    #redirectButton {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    #redirectButton:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+  <div id="score">Score: 0 | Best Score: 0</div>
+  <button id="redirectButton">Un prof arrive</button>
+  <canvas width="400" height="400" id="game"></canvas>
+  <script>
+    var canvas = document.getElementById('game');
+    var context = canvas.getContext('2d');
+    
+    var grid = 16;
+    var count = 0;
+    
+    var snake = {
+      x: 160,
+      y: 160,
+      dx: grid,
+      dy: 0,
+      cells: [],
+      maxCells: 4
+    };
+    var apple = {
+      x: 320,
+      y: 320
+    };
+
+    var score = 0;
+    var bestScore = getCookie('bestScore') || 0;
+
+    document.getElementById('score').innerText = `Score: ${score} | Best Score: ${bestScore}`;
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    function loop() {
+      requestAnimationFrame(loop);
+      if (++count < 15) {
+        return;
+      }
+      count = 0;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      snake.x += snake.dx;
+      snake.y += snake.dy;
+
+      if (snake.x < 0) {
+        snake.x = canvas.width - grid;
+      } else if (snake.x >= canvas.width) {
+        snake.x = 0;
+      }
+      if (snake.y < 0) {
+        snake.y = canvas.height - grid;
+      } else if (snake.y >= canvas.height) {
+        snake.y = 0;
+      }
+
+      snake.cells.unshift({ x: snake.x, y: snake.y });
+      if (snake.cells.length > snake.maxCells) {
+        snake.cells.pop();
+      }
+
+      context.fillStyle = 'red';
+      context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+      
+      context.fillStyle = 'green';
+      snake.cells.forEach(function(cell, index) {
+        context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+        
+        if (cell.x === apple.x && cell.y === apple.y) {
+          snake.maxCells++;
+          score++;  // Increase score
+          if (score > bestScore) {
+            bestScore = score;
+            setCookie('bestScore', bestScore, 30); // Save best score in cookies
+          }
+          document.getElementById('score').innerText = `Score: ${score} | Best Score: ${bestScore}`;
+          apple.x = getRandomInt(0, 25) * grid;
+          apple.y = getRandomInt(0, 25) * grid;
+        }
+
+        for (var i = index + 1; i < snake.cells.length; i++) {
+          if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+            resetGame();
+          }
+        }
+      });
+    }
+
+    function resetGame() {
+      snake.x = 160;
+      snake.y = 160;
+      snake.cells = [];
+      snake.maxCells = 4;
+      snake.dx = grid;
+      snake.dy = 0;
+      score = 0;  // Reset score
+      document.getElementById('score').innerText = `Score: ${score} | Best Score: ${bestScore}`;
+      apple.x = getRandomInt(0, 25) * grid;
+      apple.y = getRandomInt(0, 25) * grid;
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.which === 37 && snake.dx === 0) {
+        snake.dx = -grid;
+        snake.dy = 0;
+      } else if (e.which === 38 && snake.dy === 0) {
+        snake.dy = -grid;
+        snake.dx = 0;
+      } else if (e.which === 39 && snake.dx === 0) {
+        snake.dx = grid;
+        snake.dy = 0;
+      } else if (e.which === 40 && snake.dy === 0) {
+        snake.dy = grid;
+        snake.dx = 0;
+      }
+    });
+
+    // Button click event listener
+    document.getElementById('redirectButton').addEventListener('click', function() {
+      window.location.href = 'https://classroom.google.com/h'; // Change to your desired HTML page
+    });
+
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

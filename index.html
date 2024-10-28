@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<!-- [Previous head content remains the same until style section] -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Accueil</title>
+    <link rel="icon" type="image/x-icon" href="/images/Google_Classroom_Logo.png">
+
+    <script src="https://kit.fontawesome.com/c6c73536fd.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <style>
+        /* [Previous styles remain the same until .section] */
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        /* Header Styles */
+        header {
+            background-color: #ffffff;
+            color: rgba(0, 0, 0, 0.6);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            z-index: 1;
+            border-bottom: 1px solid #ccc;
+        }
+        header a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: "Roboto", sans-serif;
+            letter-spacing: -0.7px;
+            margin: 0;
+            font-weight: 400;
+            font-size: 22px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.65);
+        }
+        /* Iframe Sidebar Styles */
+        #sidebar-frame {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 250px;
+            height: calc(100vh - 80px);
+            border: none;
+            background-color: #ffffff;
+        }
+        /* Main Content Styles */
+        .content {
+            margin-left: 220px;
+            padding: 2rem 1rem;
+            margin-top: 47px;
+        }
+        .section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .section.popular {
+            background-color: #dbedf85e;
+        }
+        .section hr {
+            width: 60%;
+            margin: 0.5rem auto 1.5rem;
+            border: none;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            font-size: 22px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            font-family: "Open Sans";
+            letter-spacing: -2px;
+        }
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 0rem;
+        }
+        .class-card {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem;
+            position: relative;
+            border: 3px solid transparent;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .class-card:hover {
+            transform: scale(1.05);
+            animation: rotate-gradient 5s linear infinite;
+        }
+        .class-card img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        .class-card h2 {
+            margin: 0.5rem 0;
+        }
+        .play-button {
+            background-image: linear-gradient(51deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            transition: transform 0.3s ease;
+        }
+        .play-button:hover {
+            transform: scale(1.2);
+        }
+        img {
+            pointer-events: none;
+        }
+        @keyframes rotate-gradient {
+            0% {
+                background-image: linear-gradient(white, white), 
+                                linear-gradient(0deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+            }
+            100% {
+                background-image: linear-gradient(white, white), 
+                                linear-gradient(360deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+            }
+        }
+        h3 {
+            color: rgba(0, 0, 0, 0.103);
+            position: fixed;
+            bottom: 0;
+            right: 3%;
+            font-size: 12px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a href="index.html">
+            <img src="images/bars.png" width="30" alt="Menu Icon" style="margin-right: 10px;">
+            <img src="images/Google_Classroom_Logo.png" width="30" alt="Google Classroom Logo" style="margin-right: 10px;">
+            <h1>Classroom</h1>
+        </a>
+        <div class="profile">
+            <img src="images/pfp.png" alt="Profile Picture" style="border-radius: 50%; width: 40px;">
+        </div>
+    </header>
+    
+    <!-- Sidebar Iframe -->
+    <iframe id="sidebar-frame" src="sidebar.html"></iframe>
+    
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Popular Games Section -->
+        <section class="section popular">
+            <h2 class="section-title"> 🔥 populaire</h2>
+            <div class="game-grid">
+                <!-- [Popular games cards remain the same] -->
+                <div class="class-card">
+                    <img src="images/purepng.com-brickbuilding-materialbrickconstructionconcrete-materials-1421526461124ectiq.png" alt="Brick Breaker Thumbnail">
+                    <h2>Brick Breaker</h2>
+                    <p>Break the bricks!</p>
+                    <button class="play-button" onclick="window.open('brick-breaker.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/png-clipart-tetris-block-illustration-tetris-blocks-green-games-tetris-thumbnail.png" alt="Tetris Thumbnail">
+                    <h2>Tetris</h2>
+                    <p>Shape-matching puzzle game.</p>
+                    <button class="play-button" onclick="window.open('tetris.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/unnamed.png" alt="Slope Thumbnail">
+                    <h2>Slope</h2>
+                    <p>Navigate down the slope!</p>
+                    <button class="play-button" onclick="window.open('slopeoffline.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Games Section -->
+        <section class="section">
+            <h2 class="section-title">🕹️ autres jeux</h2>
+
+            <div class="game-grid">
+                <!-- [Other games cards remain the same] -->
+                <div class="class-card">
+                    <img src="images/snake.avif" alt="Snake Thumbnail">
+                    <h2>Snake</h2>
+                    <p>jpense tu sais c quoi callisse</p>
+                    <button class="play-button" onclick="window.open('snakemenu.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/pacman-151558_960_720.webp" alt="Pacman Thumbnail">
+                    <h2>Pacman</h2>
+                    <p>Classic arcade game.</p>
+                    <button class="play-button" onclick="window.open('pacmanmenu.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/realistic-aluminium-pipes-illustration_23-2148339464.avif" alt="Connect the Pipes Thumbnail">
+                    <h2>Connect the Pipes</h2>
+                    <p>Connect all the pipes!</p>
+                    <button class="play-button" onclick="window.open('Connect the Pipes.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/pngtree-cartoon-cannon-defense-tower-perspective-view-png-image_7166720.png" alt="Tower Defense Thumbnail">
+                    <h2>Tower Defense</h2>
+                    <p>Defend your territory!</p>
+                    <button class="play-button" onclick="window.open('HTML Tower Defence.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/simple-stroke-round-shaped-maze-ccf427.webp" alt="Maze Thumbnail">
+                    <h2>Maze</h2>
+                    <p>Find your way out!</p>
+                    <button class="play-button" onclick="window.open('maze.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/purepng.com-red-porsche-911-gt3-rs-4-carcarvehicletransportporsche-961524661235vbivb.png" alt="Car Game Thumbnail">
+                    <h2>Car Game</h2>
+                    <p>Race your car!</p>
+                    <button class="play-button" onclick="window.open('mini_car_game.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+                <div class="class-card">
+                    <img src="images/twin-towers-skyline-Lower-Manhattan-World-Trade-center.webp" alt="Twin Towers Simulator Thumbnail">
+                    <h2>Twin Towers Simulator</h2>
+                    <p>Experience the skyline!</p>
+                    <button class="play-button" onclick="window.open('calissedetebarnak/index.html', )">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <h3>fait 5% par moi et 95% par chatgpt</h3>
+    </main>
+</body>
+</html>

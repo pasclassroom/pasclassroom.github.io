@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            min-width: 250px; /* Increased minimum width */
+        }
+        .sidebar a {
+    color: rgba(0, 0, 0, 0.726);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin: 0.2rem 0;
+    padding: 10px 15px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 1;
+}
+
+.sidebar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.sidebar a:hover::before {
+    left: 0;
+}
+
+.sidebar a.active {
+    background-color: #4286f42d;
+}
+
+/* Remove the original hover background color */
+.sidebar a:hover {
+    background-color: transparent;
+}
+        .sidebar img {
+            width: 20px;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .favorite-icon {
+            position: absolute;
+            right: 10px;
+            display: none;
+            cursor: pointer;
+            font-size: 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            background-color: inherit;
+        }
+        .game-link .favorite-icon {
+            display: none;
+        }
+        .game-link:hover .favorite-icon {
+            display: flex;
+        }
+        .favorites-section {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            padding: 5px 15px;
+            color: rgba(0, 0, 0, 0.6);
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <a href="index.html" target="_parent" class="active">
+            <img src="images/home.png" alt="Home Icon"> Accueil
+        </a>
+        
+        <a href="rienavoiricittemoncrisse.html" target="_parent">
+            <img src="images/agenda.png" alt="Agenda Icon"> Agenda
+        </a>
+
+        <hr style="width: 100%; border-color: rgba(0, 0, 0, 0.13);">
+
+        <div id="favorites-section" class="favorites-section" style="display: none;">
+            <div class="section-title">⭐ Favoris</div>
+            <div id="favorites-list"></div>
+        </div>
+
+        <hr style="width: 100%; border-color: rgba(0, 0, 0, 0.13);">
+        
+        <div id="games-list">
+            <a href="snakemenu.html" target="_parent" class="game-link">
+                <img src="images/snake.avif" alt="Snake Icon"> Snake
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="pacmanmenu.html" target="_parent" class="game-link">
+                <img src="images/pacman-151558_960_720.webp" alt="Pacman Icon"> Pacman
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="tetris.html" target="_parent" class="game-link">
+                <img src="images/png-clipart-tetris-block-illustration-tetris-blocks-green-games-tetris-thumbnail.png" alt="Tetris Icon"> Tetris
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="brick-breaker.html" target="_parent" class="game-link">
+                <img src="images/purepng.com-brickbuilding-materialbrickconstructionconcrete-materials-1421526461124ectiq.png" alt="Game 1 Icon"> brick-breaker
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="Connect the Pipes.html" target="_parent" class="game-link">
+                <img src="images/realistic-aluminium-pipes-illustration_23-2148339464.avif" alt="Game 2 Icon"> connect the pipes
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="HTML Tower Defence.html" target="_parent" class="game-link">
+                <img src="images/pngtree-cartoon-cannon-defense-tower-perspective-view-png-image_7166720.png" alt="Game 3 Icon"> tower defense
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="maze.html" target="_parent" class="game-link">
+                <img src="images/simple-stroke-round-shaped-maze-ccf427.webp" alt="Game 4 Icon"> maze
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="mini_car_game.html" target="_parent" class="game-link">
+                <img src="images/purepng.com-red-porsche-911-gt3-rs-4-carcarvehicletransportporsche-961524661235vbivb.png" alt="Game 5 Icon"> car game
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="slopeoffline.html" target="_parent" class="game-link">
+                <img src="images/unnamed.png" alt="Game 6 Icon"> slope
+                <span class="favorite-icon">⭐</span>
+            </a>
+            <a href="calissedetebarnak/index.html" target="_parent" class="game-link">
+                <img src="images/twin-towers-skyline-Lower-Manhattan-World-Trade-center.webp" alt="Game 7 Icon"> twin towers simulator
+                <span class="favorite-icon">⭐</span>
+            </a>
+        </div>
+
+        <a href="https://www.classroom.google.com" target="_parent" style="background-color: rgba(255, 0, 0, 0.068);">
+            <img src="images/Google_Classroom_Logo.png" alt="Game 7 Icon">Aller au vrai classroom
+        </a>
+    </nav>
+
+    <script>
+        // Initialize favorites from localStorage
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+        // Function to update favorites section visibility
+        function updateFavoritesSection() {
+            const favoritesSection = document.getElementById('favorites-section');
+            favoritesSection.style.display = favorites.length > 0 ? 'block' : 'none';
+        }
+
+        // Function to add a game to favorites
+        function addToFavorites(gameLink) {
+            const gameData = {
+                href: gameLink.href,
+                innerHTML: gameLink.innerHTML.replace('⭐', '❌')
+            };
+            favorites.push(gameData);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesList();
+        }
+
+        // Function to remove a game from favorites
+        function removeFromFavorites(href) {
+            favorites = favorites.filter(game => game.href !== href);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesList();
+        }
+
+        // Function to update the favorites list in the DOM
+        function updateFavoritesList() {
+            const favoritesList = document.getElementById('favorites-list');
+            favoritesList.innerHTML = '';
+            
+            favorites.forEach(game => {
+                const favoriteLink = document.createElement('a');
+                favoriteLink.href = game.href;
+                favoriteLink.target = '_parent';
+                favoriteLink.className = 'game-link';
+                favoriteLink.innerHTML = game.innerHTML;
+                
+                const favoriteIcon = favoriteLink.querySelector('.favorite-icon');
+                if (favoriteIcon) {
+                    favoriteIcon.style.display = 'none';
+                    favoriteLink.addEventListener('mouseover', () => favoriteIcon.style.display = 'flex');
+                    favoriteLink.addEventListener('mouseout', () => favoriteIcon.style.display = 'none');
+                    
+                    // Add click handler for the icon
+                    favoriteIcon.onclick = (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        removeFromFavorites(favoriteLink.href);
+                    };
+                }
+                
+                favoritesList.appendChild(favoriteLink);
+            });
+            
+            updateFavoritesSection();
+        }
+
+        // Add click event listeners to favorite icons
+        document.querySelectorAll('.game-link .favorite-icon').forEach(icon => {
+            icon.onclick = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const gameLink = icon.parentElement;
+                const isInFavorites = favorites.some(game => game.href === gameLink.href);
+                
+                if (isInFavorites) {
+                    removeFromFavorites(gameLink.href);
+                } else {
+                    addToFavorites(gameLink);
+                }
+            };
+        });
+
+        // Initial update of favorites list
+        updateFavoritesList();
+    </script>
+</body>
+</html>
